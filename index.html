@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Favourite Tools</title>
   <style>
     body {
@@ -17,15 +17,21 @@
       background-color: #121212;
       color: #f4f4f4;
     }
-    .header, .tool {
+    .header, .tool, .slogan {
       background: #fff;
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 20px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
-    .dark-mode .header, .dark-mode .tool {
+    .dark-mode .header, .dark-mode .tool, .dark-mode .slogan {
       background: #1e1e1e;
+    }
+    .slogan {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #007bff;
     }
     .tool h3 {
       margin: 0 0 5px;
@@ -49,16 +55,35 @@
     }
     .top-buttons button {
       background: #28a745;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
-    .dark-mode .top-buttons button {
+    .top-buttons button:hover {
       background: #1d8f3f;
     }
     .toggle-mode {
       margin-bottom: 20px;
     }
+    .toggle-mode button {
+      background: #6c757d;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .toggle-mode button:hover {
+      background: #5a6268;
+    }
   </style>
 </head>
 <body>
+
+  <div class="slogan">Realizing Dreams Through the Touch of Technology</div>
+
   <div class="header" id="welcome"></div>
 
   <div class="top-buttons">
@@ -72,7 +97,6 @@
 
   <div class="header" id="deviceInfo"></div>
 
-  <!-- Tools Section -->
   <div id="tools"></div>
 
   <script>
@@ -88,9 +112,14 @@
         link: "https://accessibleresource.github.io/LinguaFlow-Translate/"
       },
       {
+        title: "Photo Analyser",
+        desc: "Analyse your photo with AI.",
+        link: "https://accessibleresource.github.io/photo-analyser.-/"
+      },
+      {
         title: "SmartPDF Analyzer",
-        desc: "Ask questions, get answers from your PDFs.",
-        link: "https://accessibleresource.github.io/SmartPDF-Analyzer---/"
+        desc: "Analyze PDF files intelligently.",
+        link: "https://accessibleresource.github.io/Smart-PDF-Analyzer/"
       },
       {
         title: "AI Chatbot",
@@ -160,9 +189,13 @@
     welcome.innerText = message;
 
     const deviceInfo = document.getElementById("deviceInfo");
-    const batteryLevel = navigator.getBattery ? navigator.getBattery().then(b => {
-      deviceInfo.innerText = `Battery Level: ${Math.round(b.level * 100)}% | Date: ${now.toLocaleDateString()} | Time: ${now.toLocaleTimeString()}`;
-    }) : deviceInfo.innerText = `Date: ${now.toLocaleDateString()} | Time: ${now.toLocaleTimeString()}`;
+    if (navigator.getBattery) {
+      navigator.getBattery().then(battery => {
+        deviceInfo.innerText = `Battery Level: ${Math.round(battery.level * 100)}% | Date: ${now.toLocaleDateString()} | Time: ${now.toLocaleTimeString()}`;
+      });
+    } else {
+      deviceInfo.innerText = `Date: ${now.toLocaleDateString()} | Time: ${now.toLocaleTimeString()}`;
+    }
 
     const toolSection = document.getElementById("tools");
     tools.forEach(tool => {
@@ -176,5 +209,6 @@
       document.body.classList.toggle("dark-mode");
     }
   </script>
+
 </body>
 </html>
