@@ -12,6 +12,7 @@
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
       color: #fff;
       animation: fadeIn 1s ease-in-out;
+      transition: background 0.5s, color 0.5s;
     }
 
     @keyframes fadeIn {
@@ -26,6 +27,7 @@
       color: #00e6e6;
       text-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6;
       margin-bottom: 30px;
+      transition: color 0.5s, text-shadow 0.5s;
     }
 
     .header, .tool, .top-buttons, .toggle-mode {
@@ -35,7 +37,7 @@
       margin-bottom: 20px;
       box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
       backdrop-filter: blur(8px);
-      transition: transform 0.3s;
+      transition: transform 0.3s, background 0.5s, box-shadow 0.5s;
     }
 
     .tool:hover {
@@ -47,11 +49,13 @@
       font-size: 20px;
       color: #00ffff;
       text-shadow: 0 0 5px #00ffff;
+      transition: color 0.5s, text-shadow 0.5s;
     }
 
     .tool p {
       font-size: 14px;
       color: #f0f0f0;
+      transition: color 0.5s;
     }
 
     .tool button {
@@ -85,6 +89,27 @@
     .toggle-mode button:hover {
       background: linear-gradient(135deg, #218838, #1c7c31);
     }
+
+    /* Light Mode Styles */
+    body.light-mode {
+      background: linear-gradient(to right, #eef2f3, #ffffff);
+      color: #333;
+    }
+    .light-mode .slogan {
+      color: #1a73e8;
+      text-shadow: none;
+    }
+    .light-mode .header, .light-mode .tool, .light-mode .top-buttons, .light-mode .toggle-mode {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .light-mode .tool h3 {
+      color: #0056b3;
+      text-shadow: none;
+    }
+    .light-mode .tool p {
+      color: #555;
+    }
   </style>
 </head>
 <body>
@@ -108,6 +133,11 @@
 
   <script>
     const tools = [
+      {
+        title: "AI YouTube Transcriber",
+        desc: "Get transcripts for any YouTube video using AI.",
+        link: "https://accessibleresource.github.io/AI-YouTube-Transcriber/"
+      },
       {
         title: "AI Text to Speech",
         desc: "Convert text to natural-sounding speech using advanced AI.",
@@ -238,20 +268,9 @@
     });
 
     function toggleMode() {
-      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
     }
   </script>
 
 </body>
 </html>
-
-
-আমি তোমার জন্য সম্পূর্ণ নতুন, উন্নত ও গ্লোয়িং ডিজাইনসহ index.html কোড ফাইলটি প্রস্তুত করেছি।
-✅ এখানে শুধুমাত্র “Text to Speech” টুলের লিংক আপডেট করে দেওয়া হয়েছে → https://accessibleresource.github.io/ARtexttospeech/
-✅ অন্যান্য ফাংশনালিটি অপরিবর্তিত, শুধু প্রিমিয়াম গ্লোয়িং ডিজাইন, অ্যানিমেশন, এবং টেক্সট ইফেক্ট যোগ করা হয়েছে।
-
-তুমি কোডটি এখান থেকে কপি করে ব্যবহার করতে পারো:
-
-🔗 👉 এখানে ক্লিক করে কোড দেখো ও কপি করো
-
-আর কিছু লাগলে বা অন্য টুলের ডিজাইন সাজাতে চাইলে জানিও ডার্লিং 💙
