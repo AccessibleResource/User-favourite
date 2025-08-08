@@ -4,111 +4,333 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Favourite Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      animation: fadeIn 1s ease-in-out;
-      transition: background 0.5s, color 0.5s;
+    /* ------------------- */
+    /* --- Base & Dark Mode Styles --- */
+    /* ------------------- */
+    :root {
+      --border-radius: 16px;
+      --transition-speed: 0.3s;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    body {
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #111827; /* Dark Slate Blue */
+      color: #F9FAFB; /* Almost White */
+      transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+      overflow-x: hidden;
     }
 
     .slogan {
       text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      color: #00e6e6;
-      text-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6;
-      margin-bottom: 30px;
-      transition: color 0.5s, text-shadow 0.5s;
-    }
-
-    .header, .tool, .top-buttons, .toggle-mode {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
-      backdrop-filter: blur(8px);
-      transition: transform 0.3s, background 0.5s, box-shadow 0.5s;
-    }
-
-    .tool:hover {
-      transform: scale(1.03);
-    }
-
-    .tool h3 {
-      margin: 0 0 8px;
-      font-size: 20px;
-      color: #00ffff;
-      text-shadow: 0 0 5px #00ffff;
-      transition: color 0.5s, text-shadow 0.5s;
-    }
-
-    .tool p {
-      font-size: 14px;
-      color: #f0f0f0;
-      transition: color 0.5s;
-    }
-
-    .tool button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      border: none;
-      background: linear-gradient(135deg, #00e6e6, #007bff);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
       color: #fff;
-      border-radius: 6px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #00e6e6, 0 0 20px #007bff;
-      transition: background 0.3s;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      margin-bottom: 40px;
     }
 
-    .tool button:hover {
-      background: linear-gradient(135deg, #00b3b3, #0056b3);
+    /* Glassmorphism Container Style */
+    .glass-container {
+      background: rgba(31, 41, 55, 0.35); /* Semi-transparent dark gray */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 24px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      transition: background var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    }
+
+    #welcome, #deviceInfo {
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: center;
+      line-height: 1.6;
+    }
+    
+    #deviceInfo {
+      font-weight: 300;
+      color: #D1D5DB; /* Lighter gray */
+    }
+
+    .top-buttons, .toggle-mode {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding: 16px;
+      flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
     }
 
     .top-buttons button,
     .toggle-mode button {
-      background: linear-gradient(135deg, #28a745, #218838);
-      color: #fff;
-      padding: 10px 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 12px 24px;
       border: none;
-      border-radius: 6px;
+      border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 0 10px #28a745, 0 0 20px #218838;
+      color: #fff;
+      transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
     }
 
     .top-buttons button:hover,
     .toggle-mode button:hover {
-      background: linear-gradient(135deg, #218838, #1c7c31);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .top-buttons button {
+        background-color: #16A34A; /* Green */
+    }
+    .top-buttons button:hover {
+        background-color: #15803D;
     }
 
-    /* Light Mode Styles */
+    .toggle-mode button {
+        background-color: #4F46E5; /* Indigo */
+    }
+     .toggle-mode button:hover {
+        background-color: #4338CA;
+    }
+
+    /* --- Tools Grid Layout --- */
+    #tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .tool {
+      color: #fff;
+      padding: 24px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .tool:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .tool h3 {
+      margin: 0 0 12px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .tool p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.7;
+      margin: 0 0 20px 0;
+      flex-grow: 1;
+    }
+
+    .tool button {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 12px 24px;
+      border: none;
+      color: #fff;
+      border-radius: 12px;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease;
+    }
+
+    .tool button:hover {
+        transform: scale(1.05);
+    }
+
+    /* ------------------- */
+    /* --- Unique Tool Themes --- */
+    /* ------------------- */
+    .tool-1  { background: linear-gradient(135deg, #4343A4, #2C3E50); }
+    .tool-1 button { background-color: #4343A4; }
+    .tool-1 button:hover { background-color: #31317A; }
+
+    .tool-2  { background: linear-gradient(135deg, #1D976C, #93F9B9); }
+    .tool-2 h3, .tool-2 p { color: #002b19; text-shadow: none; }
+    .tool-2 button { background-color: #1D976C; color: #fff; }
+    .tool-2 button:hover { background-color: #146B4C; }
+
+    .tool-3  { background: linear-gradient(135deg, #FF8C00, #FF0080); }
+    .tool-3 button { background-color: #FF8C00; }
+    .tool-3 button:hover { background-color: #D97800; }
+    
+    .tool-4  { background: linear-gradient(135deg, #DA4453, #89216B); }
+    .tool-4 button { background-color: #DA4453; }
+    .tool-4 button:hover { background-color: #B43845; }
+
+    .tool-5  { background: linear-gradient(135deg, #0072ff, #00c6ff); }
+    .tool-5 button { background-color: #0072ff; }
+    .tool-5 button:hover { background-color: #0059C6; }
+
+    .tool-6  { background: linear-gradient(135deg, #485563, #29323c); }
+    .tool-6 button { background-color: #485563; }
+    .tool-6 button:hover { background-color: #3A4550; }
+
+    .tool-7  { background: linear-gradient(135deg, #4776E6, #8E54E9); }
+    .tool-7 button { background-color: #4776E6; }
+    .tool-7 button:hover { background-color: #3A62C3; }
+
+    .tool-8  { background: linear-gradient(135deg, #e52d27, #b31217); }
+    .tool-8 button { background-color: #e52d27; }
+    .tool-8 button:hover { background-color: #C12721; }
+
+    .tool-9  { background: linear-gradient(135deg, #3b5998, #2b4b8c); }
+    .tool-9 button { background-color: #3b5998; }
+    .tool-9 button:hover { background-color: #2F477A; }
+
+    .tool-10 { background: linear-gradient(135deg, #f7971e, #ffd200); }
+    .tool-10 h3, .tool-10 p { color: #442B00; text-shadow: none; }
+    .tool-10 button { background-color: #f7971e; color: #fff; }
+    .tool-10 button:hover { background-color: #D68018; }
+    
+    .tool-11 { background: linear-gradient(135deg, #56ab2f, #a8e063); }
+    .tool-11 h3, .tool-11 p { color: #15380d; text-shadow: none; }
+    .tool-11 button { background-color: #56ab2f; color: #fff; }
+    .tool-11 button:hover { background-color: #458B25; }
+
+    .tool-12 { background: linear-gradient(135deg, #6a3093, #a044ff); }
+    .tool-12 button { background-color: #6a3093; }
+    .tool-12 button:hover { background-color: #552676; }
+
+    .tool-13 { background: linear-gradient(135deg, #F2994A, #F2C94C); }
+    .tool-13 h3, .tool-13 p { color: #5C3202; text-shadow: none; }
+    .tool-13 button { background-color: #F2994A; color: #fff; }
+    .tool-13 button:hover { background-color: #D98234; }
+    
+    .tool-14 { background: linear-gradient(135deg, #134E5E, #71B280); }
+    .tool-14 button { background-color: #134E5E; }
+    .tool-14 button:hover { background-color: #0D3742; }
+
+    .tool-15 { background: linear-gradient(135deg, #2c3e50, #3498db); }
+    .tool-15 button { background-color: #3498db; }
+    .tool-15 button:hover { background-color: #2980B9; }
+
+    .tool-16 { background: linear-gradient(135deg, #000000, #434343); }
+    .tool-16 button { background-color: #333; border: 1px solid #777; }
+    .tool-16 button:hover { background-color: #555; }
+
+    .tool-17 { background: linear-gradient(135deg, #240b36, #c31432); }
+    .tool-17 button { background-color: #c31432; }
+    .tool-17 button:hover { background-color: #9F1028; }
+
+    .tool-18 { background: linear-gradient(135deg, #BFC0C1, #8A8B8C); }
+    .tool-18 h3, .tool-18 p { color: #333; text-shadow: none; }
+    .tool-18 button { background-color: #6c757d; color: #fff; }
+    .tool-18 button:hover { background-color: #5a6268; }
+
+    .tool-19 { background: linear-gradient(135deg, #ff7e5f, #feb47b); }
+    .tool-19 h3, .tool-19 p { color: #5a2e21; text-shadow: none; }
+    .tool-19 button { background-color: #ff7e5f; color: #fff; }
+    .tool-19 button:hover { background-color: #E86A4F; }
+
+    .tool-20 { background: linear-gradient(135deg, #42E695, #3BB2B8); }
+    .tool-20 h3, .tool-20 p { color: #023c28; text-shadow: none; }
+    .tool-20 button { background-color: #42E695; color: #023c28; }
+    .tool-20 button:hover { background-color: #2FCE85; }
+    
+    .tool-21 { background: linear-gradient(135deg, #1c92d2, #f2fcfe); }
+    .tool-21 h3, .tool-21 p { color: #0b3d56; text-shadow: none; }
+    .tool-21 button { background-color: #1c92d2; color: #fff; }
+    .tool-21 button:hover { background-color: #1677A8; }
+
+    .tool-22 { background: linear-gradient(135deg, #fccb0b, #f89902); }
+    .tool-22 h3, .tool-22 p { color: #493100; text-shadow: none; }
+    .tool-22 button { background-color: #f89902; color: #fff; }
+    .tool-22 button:hover { background-color: #D98202; }
+    
+    /* ------------------- */
+    /* --- Light Mode Styles --- */
+    /* ------------------- */
     body.light-mode {
-      background: linear-gradient(to right, #eef2f3, #ffffff);
-      color: #333;
+      background: #F3F4F6; /* Light Gray */
+      color: #1F2937; /* Darker Gray */
     }
+
     .light-mode .slogan {
-      color: #1a73e8;
-      text-shadow: none;
+        color: #111827;
+        text-shadow: none;
     }
-    .light-mode .header, .light-mode .tool, .light-mode .top-buttons, .light-mode .toggle-mode {
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    .light-mode .glass-container {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
     }
-    .light-mode .tool h3 {
-      color: #0056b3;
-      text-shadow: none;
+    
+    .light-mode #deviceInfo {
+        color: #4B5563;
     }
-    .light-mode .tool p {
-      color: #555;
+
+    .light-mode .tool {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .light-mode .tool:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+    
+    .light-mode .tool h3, .light-mode .tool p {
+        color: #fff; /* Default text color for dark backgrounds */
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Light mode text color corrections for contrast */
+    .light-mode .tool-2 h3, .light-mode .tool-2 p,
+    .light-mode .tool-10 h3, .light-mode .tool-10 p,
+    .light-mode .tool-11 h3, .light-mode .tool-11 p,
+    .light-mode .tool-13 h3, .light-mode .tool-13 p,
+    .light-mode .tool-18 h3, .light-mode .tool-18 p,
+    .light-mode .tool-19 h3, .light-mode .tool-19 p,
+    .light-mode .tool-20 h3, .light-mode .tool-20 p,
+    .light-mode .tool-21 h3, .light-mode .tool-21 p,
+    .light-mode .tool-22 h3, .light-mode .tool-22 p {
+        color: inherit; /* Use the color defined in the specific tool rule */
+    }
+
+    /* ------------------- */
+    /* --- Responsiveness --- */
+    /* ------------------- */
+    @media (max-width: 768px) {
+      body {
+        padding: 16px;
+      }
+      .top-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .top-buttons button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #tools {
+        grid-template-columns: 1fr;
+      }
+      .slogan {
+        font-size: 1.5rem;
+      }
+      .glass-container, .tool {
+        padding: 16px;
+      }
     }
   </style>
 </head>
@@ -116,155 +338,80 @@
 
   <div class="slogan">Realizing Dreams Through the Touch of Technology</div>
 
-  <div class="header" id="welcome"></div>
+  <div class="glass-container" id="welcome"></div>
 
-  <div class="top-buttons">
-    <button onclick="window.open('https://youtube.com/@accessibleresource?si=LGhrnQDGHw-BTroD')">Join on YouTube</button>
-    <button onclick="window.open('https://t.me/shopnotamal')">Join on Telegram</button>
+  <div class="glass-container top-buttons">
+    <button onclick="window.open('https://youtube.com/@accessibleresource?si=LGhrnQDGHw-BTroD', '_blank')">Join on YouTube</button>
+    <button onclick="window.open('https://t.me/shopnotamal', '_blank')">Join on Telegram</button>
   </div>
 
-  <div class="toggle-mode">
+  <div class="glass-container toggle-mode">
     <button onclick="toggleMode()">Toggle Dark/Light Mode</button>
   </div>
 
-  <div class="header" id="deviceInfo"></div>
+  <div class="glass-container" id="deviceInfo"></div>
 
   <div id="tools"></div>
 
   <script>
-    const tools = [
-      {
-        title: "AI YouTube Transcriber",
-        desc: "Get transcripts for any YouTube video using AI.",
-        link: "https://accessibleresource.github.io/AI-YouTube-Transcriber/"
-      },
-      {
-        title: "AI Text to Speech",
-        desc: "Convert text to natural-sounding speech using advanced AI.",
-        link: "https://accessibleresource.github.io/ARtexttospeech/"
-      },
-      {
-        title: "AI Summarizer",
-        desc: "Summarize video, audio, image, or documents.",
-        link: "https://accessibleresource.github.io/Ai-summarizer/"
-      },
-      {
-        title: "LinguaFlow Translate",
-        desc: "Your premium AI-powered translation experience.",
-        link: "https://accessibleresource.github.io/LinguaFlow-Translate/"
-      },
-      {
-        title: "Photo Analyser",
-        desc: "Analyse your photo with AI.",
-        link: "https://accessibleresource.github.io/photo-analyser.-/"
-      },
-      {
-        title: "Text to Image Generator",
-        desc: "Generate images from text using AI.",
-        link: "https://accessibleresource.github.io/Text-to-image-generator/"
-      },
-      {
-        title: "SMRipon YT Companion",
-        desc: "Manage and analyze your YouTube channel effectively.",
-        link: "https://accessibleresource.github.io/SMRipon-YT-Companion/"
-      },
-      {
-        title: "FB Companion",
-        desc: "Powerful Facebook content assistant and companion tool.",
-        link: "https://accessibleresource.github.io/Fb-companion/"
-      },
-      {
-        title: "SmartPDF Analyzer",
-        desc: "Analyze PDF files intelligently.",
-        link: "https://accessibleresource.github.io/Smart-PDF-Analyzer/"
-      },
-      {
-        title: "AI Chatbot",
-        desc: "Talk with Accessible Resource chatbot.",
-        link: "https://accessibleresource.github.io/Accessible-resource-chat/"
-      },
-      {
-        title: "Smart Post Studio",
-        desc: "Generate social posts and articles easily.",
-        link: "https://accessibleresource.github.io/Smart-Post-Studio/"
-      },
-      {
-        title: "VocabHub",
-        desc: "Multi-language dictionary app.",
-        link: "https://accessibleresource.github.io/VocabHub/"
-      },
-      {
-        title: "AI Grammar Checker",
-        desc: "Fix grammar issues with AI suggestions.",
-        link: "https://accessibleresource.github.io/Grammar-checker/"
-      },
-      {
-        title: "Text Analyzer Pro",
-        desc: "Analyze word, sentence, and punctuation stats.",
-        link: "https://accessibleresource.github.io/Text-analyser-pro/"
-      },
-      {
-        title: "Text Encryptor",
-        desc: "Encrypt or decrypt text using AI.",
-        link: "https://accessibleresource.github.io/AI-Text-Encryption-Decryption-Tool/"
-      },
-      {
-        title: "AI-future-predictor",
-        desc: "Predict your future with AI insights.",
-        link: "https://accessibleresource.github.io/AI-future-predictor---/"
-      },
-      {
-        title: "Simple Calculator",
-        desc: "Basic calculator tool.",
-        link: "https://accessibleresource.github.io/Simple-calculator/"
-      },
-      {
-        title: "Age Calculator",
-        desc: "Calculate your age instantly.",
-        link: "https://accessibleresource.github.io/Age-Calculator-/"
-      },
-      {
-        title: "Currency Converter",
-        desc: "Convert between currencies.",
-        link: "https://accessibleresource.github.io/Currency-converter/"
-      },
-      {
-        title: "Global Time Converter",
-        desc: "Check time in different time zones.",
-        link: "https://accessibleresource.github.io/Time-converter/"
-      },
-      {
-        title: "Honey GPT",
-        desc: "Speak and receive real-time answers in a natural female voice.",
-        link: "https://accessibleresource.github.io/Application/"
-      }
-    ];
+    document.addEventListener("DOMContentLoaded", function() {
+      const tools = [
+        { title: "AR DualVoice Generator", desc: "AR DualVoice Generator is a modern tool that can create realistic dialogues in two voices simultaneously, perfect for movies, dramas, or storytelling.", link: "https://accessibleresource.github.io/AR-DualVoice-Generator/" },
+        { title: "AI YouTube Transcriber", desc: "Get transcripts for any YouTube video using AI.", link: "https://accessibleresource.github.io/AI-YouTube-Transcriber/" },
+        { title: "AI Text to Speech", desc: "Convert text to natural-sounding speech using advanced AI.", link: "https://accessibleresource.github.io/ARtexttospeech/" },
+        { title: "AI Summarizer", desc: "Summarize video, audio, image, or documents.", link: "https://accessibleresource.github.io/Ai-summarizer/" },
+        { title: "LinguaFlow Translate", desc: "Your premium AI-powered translation experience.", link: "https://accessibleresource.github.io/LinguaFlow-Translate/" },
+        { title: "Photo Analyser", desc: "Analyse your photo with AI.", link: "https://accessibleresource.github.io/photo-analyser.-/" },
+        { title: "Text to Image Generator", desc: "Generate images from text using AI.", link: "https://accessibleresource.github.io/Text-to-image-generator/" },
+        { title: "SMRipon YT Companion", desc: "Manage and analyze your YouTube channel effectively.", link: "https://accessibleresource.github.io/SMRipon-YT-Companion/" },
+        { title: "FB Companion", desc: "Powerful Facebook content assistant and companion tool.", link: "https://accessibleresource.github.io/Fb-companion/" },
+        { title: "SmartPDF Analyzer", desc: "Analyze PDF files intelligently.", link: "https://accessibleresource.github.io/Smart-PDF-Analyzer/" },
+        { title: "AI Chatbot", desc: "Talk with Accessible Resource chatbot.", link: "https://accessibleresource.github.io/Accessible-resource-chat/" },
+        { title: "Smart Post Studio", desc: "Generate social posts and articles easily.", link: "https://accessibleresource.github.io/Smart-Post-Studio/" },
+        { title: "VocabHub", desc: "Multi-language dictionary app.", link: "https://accessibleresource.github.io/VocabHub/" },
+        { title: "AI Grammar Checker", desc: "Fix grammar issues with AI suggestions.", link: "https://accessibleresource.github.io/Grammar-checker/" },
+        { title: "Text Analyzer Pro", desc: "Analyze word, sentence, and punctuation stats.", link: "https://accessibleresource.github.io/Text-analyser-pro/" },
+        { title: "Text Encryptor", desc: "Encrypt or decrypt text using AI.", link: "https://accessibleresource.github.io/AI-Text-Encryption-Decryption-Tool/" },
+        { title: "AI-future-predictor", desc: "Predict your future with AI insights.", link: "https://accessibleresource.github.io/AI-future-predictor---/" },
+        { title: "Simple Calculator", desc: "Basic calculator tool.", link: "https://accessibleresource.github.io/Simple-calculator/" },
+        { title: "Age Calculator", desc: "Calculate your age instantly.", link: "https://accessibleresource.github.io/Age-Calculator-/" },
+        { title: "Currency Converter", desc: "Convert between currencies.", link: "https://accessibleresource.github.io/Currency-converter/" },
+        { title: "Global Time Converter", desc: "Check time in different time zones.", link: "https://accessibleresource.github.io/Time-converter/" },
+        { title: "Honey GPT", desc: "Speak and receive real-time answers in a natural female voice.", link: "https://accessibleresource.github.io/Application/" }
+      ];
 
-    const welcome = document.getElementById("welcome");
-    const now = new Date();
-    const hour = now.getHours();
-    let message = "";
-    if (hour >= 5 && hour < 12) message = "Good morning! Welcome to the User Favourite Tools section. I'm S M Ripon, along with my team at Accessible Resource, wishing you a productive start to your day!";
-    else if (hour >= 12 && hour < 16) message = "Good afternoon! Hope your day is going great. You're now in the User Favourite Tools section, curated just for your daily needs — from me, S M Ripon, and the Accessible Resource team.";
-    else if (hour >= 16 && hour < 20) message = "Good evening! Welcome back! This is the User Favourite Tools section, brought to you with care by S M Ripon and the team at Accessible Resource. Let’s make the most of your evening.";
-    else message = "Good night! You're visiting the User Favourite Tools section at the perfect time to wrap up your day smartly. With love from S M Ripon and Accessible Resource.";
-    welcome.innerText = message;
+      const welcome = document.getElementById("welcome");
+      const now = new Date();
+      const hour = now.getHours();
+      let message = "";
+      if (hour >= 5 && hour < 12) message = "Good morning! Welcome to the User Favourite Tools section. Accessible Resource wishes you a productive start to your day!";
+      else if (hour >= 12 && hour < 16) message = "Good afternoon! Hope your day is going great. You're now in the User Favourite Tools section, curated just for your daily needs by Accessible Resource.";
+      else if (hour >= 16 && hour < 20) message = "Good evening! Welcome back! This is the User Favourite Tools section, brought to you with care by Accessible Resource. Let’s make the most of your evening.";
+      else message = "Good night! You're visiting the User Favourite Tools section at the perfect time to wrap up your day smartly. With love from Accessible Resource.";
+      welcome.innerText = message;
 
-    const deviceInfo = document.getElementById("deviceInfo");
-    if (navigator.getBattery) {
-      navigator.getBattery().then(battery => {
-        deviceInfo.innerText = `Battery Level: ${Math.round(battery.level * 100)}% | Date: ${now.toLocaleDateString()} | Time: ${now.toLocaleTimeString()}`;
+      const deviceInfo = document.getElementById("deviceInfo");
+      const updateDeviceInfo = () => {
+          const currentTime = new Date();
+          let infoText = `Date: ${currentTime.toLocaleDateString()} | Time: ${currentTime.toLocaleTimeString()}`;
+          if (navigator.getBattery) {
+              navigator.getBattery().then(battery => {
+                  deviceInfo.innerText = `Battery Level: ${Math.round(battery.level * 100)}% | ${infoText}`;
+              });
+          } else {
+              deviceInfo.innerText = infoText;
+          }
+      };
+      updateDeviceInfo();
+      setInterval(updateDeviceInfo, 1000);
+
+      const toolSection = document.getElementById("tools");
+      tools.forEach((tool, index) => {
+        const div = document.createElement("div");
+        div.className = `tool tool-${index + 1}`;
+        div.innerHTML = `<h3>${tool.title}</h3><p>${tool.desc}</p><button onclick="window.open('${tool.link}', '_blank')">Open</button>`;
+        toolSection.appendChild(div);
       });
-    } else {
-      deviceInfo.innerText = `Date: ${now.toLocaleDateString()} | Time: ${now.toLocaleTimeString()}`;
-    }
-
-    const toolSection = document.getElementById("tools");
-    tools.forEach(tool => {
-      const div = document.createElement("div");
-      div.className = "tool";
-      div.innerHTML = `<h3>${tool.title}</h3><p>${tool.desc}</p><button onclick="window.open('${tool.link}')">Open</button>`;
-      toolSection.appendChild(div);
     });
 
     function toggleMode() {
