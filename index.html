@@ -7,9 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://toolnovanext.github.io/scripts/navigation.js" defer></script>
+  <script src="https://toolnovanext.github.io/scripts/notification.js" defer></script>
   <style>
     /* ------------------- */
-    /* --- Base & Dark Mode Styles --- */
+    /* --- Base Styles --- */
     /* ------------------- */
     :root {
       --border-radius: 16px;
@@ -24,81 +26,6 @@
       color: #F9FAFB; /* Almost White */
       transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
       overflow-x: hidden;
-    }
-
-    .slogan {
-      text-align: center;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-      margin-bottom: 40px;
-    }
-
-    /* Glassmorphism Container Style */
-    .glass-container {
-      background: rgba(31, 41, 55, 0.35); /* Semi-transparent dark gray */
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 24px;
-      border-radius: var(--border-radius);
-      margin-bottom: 24px;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-      transition: background var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-    }
-
-    #welcome, #deviceInfo {
-      font-size: 1rem;
-      font-weight: 400;
-      text-align: center;
-      line-height: 1.6;
-    }
-    
-    #deviceInfo {
-      font-weight: 300;
-      color: #D1D5DB; /* Lighter gray */
-    }
-
-    .top-buttons, .toggle-mode {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      padding: 16px;
-      flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
-    }
-
-    .top-buttons button,
-    .toggle-mode button {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      color: #fff;
-      transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
-    }
-
-    .top-buttons button:hover,
-    .toggle-mode button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-    
-    .top-buttons button {
-        background-color: #16A34A; /* Green */
-    }
-    .top-buttons button:hover {
-        background-color: #15803D;
-    }
-
-    .toggle-mode button {
-        background-color: #4F46E5; /* Indigo */
-    }
-     .toggle-mode button:hover {
-        background-color: #4338CA;
     }
 
     /* --- Tools Grid Layout --- */
@@ -153,7 +80,7 @@
     }
 
     .tool button:hover {
-        transform: scale(1.05);
+      transform: scale(1.05);
     }
 
     /* ------------------- */
@@ -255,55 +182,6 @@
     .tool-22 h3, .tool-22 p { color: #493100; text-shadow: none; }
     .tool-22 button { background-color: #f89902; color: #fff; }
     .tool-22 button:hover { background-color: #D98202; }
-    
-    /* ------------------- */
-    /* --- Light Mode Styles --- */
-    /* ------------------- */
-    body.light-mode {
-      background: #F3F4F6; /* Light Gray */
-      color: #1F2937; /* Darker Gray */
-    }
-
-    .light-mode .slogan {
-        color: #111827;
-        text-shadow: none;
-    }
-    
-    .light-mode .glass-container {
-        background: rgba(255, 255, 255, 0.7);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-    }
-    
-    .light-mode #deviceInfo {
-        color: #4B5563;
-    }
-
-    .light-mode .tool {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    }
-    
-    .light-mode .tool:hover {
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-    }
-    
-    .light-mode .tool h3, .light-mode .tool p {
-        color: #fff; /* Default text color for dark backgrounds */
-        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Light mode text color corrections for contrast */
-    .light-mode .tool-2 h3, .light-mode .tool-2 p,
-    .light-mode .tool-10 h3, .light-mode .tool-10 p,
-    .light-mode .tool-11 h3, .light-mode .tool-11 p,
-    .light-mode .tool-13 h3, .light-mode .tool-13 p,
-    .light-mode .tool-18 h3, .light-mode .tool-18 p,
-    .light-mode .tool-19 h3, .light-mode .tool-19 p,
-    .light-mode .tool-20 h3, .light-mode .tool-20 p,
-    .light-mode .tool-21 h3, .light-mode .tool-21 p,
-    .light-mode .tool-22 h3, .light-mode .tool-22 p {
-        color: inherit; /* Use the color defined in the specific tool rule */
-    }
 
     /* ------------------- */
     /* --- Responsiveness --- */
@@ -312,115 +190,56 @@
       body {
         padding: 16px;
       }
-      .top-buttons {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .top-buttons button {
-        width: 100%;
-      }
     }
 
     @media (max-width: 480px) {
       #tools {
         grid-template-columns: 1fr;
       }
-      .slogan {
-        font-size: 1.5rem;
-      }
-      .glass-container, .tool {
+      .tool {
         padding: 16px;
       }
     }
   </style>
 </head>
 <body>
-
-  <div class="slogan">Realizing Dreams Through the Touch of Technology</div>
-
-  <div class="glass-container" id="welcome"></div>
-
-  <div class="glass-container top-buttons">
-    <button onclick="window.open('https://youtube.com/@accessibleresource?si=LGhrnQDGHw-BTroD', '_blank')">Join on YouTube</button>
-    <button onclick="window.open('https://t.me/shopnotamal', '_blank')">Join on Telegram</button>
-  </div>
-
-  <div class="glass-container toggle-mode">
-    <button onclick="toggleMode()">Toggle Dark/Light Mode</button>
-  </div>
-
-  <div class="glass-container" id="deviceInfo"></div>
-
   <div id="tools"></div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const tools = [
-        { title: "AI website summarizer", desc: "Summarize or extract any key point or summery of multiple urls and websites. ask any questions related to website or URL.", link: "https://accessibleresource.github.io/website-summarizer/" },
+    const tools = [
+      { title: "AI Website Summarizer", desc: "Summarize or extract any key point or summary of multiple URLs and websites. Ask any questions related to website or URL.", link: "https://toolnovanext.github.io/website-summarizer/" },
+      { title: "AR DualVoice Generator", desc: "AR DualVoice Generator is a modern tool that can create realistic dialogues in two voices simultaneously, perfect for movies, dramas, or storytelling.", link: "https://toolnovanext.github.io/AR-DualVoice-Generator/" },
+      { title: "Slide Show Creator", desc: "Create videos of slide shows. Best for presentations, social media posts, and office work.", link: "https://toolnovanext.github.io/slide-show/" },
+      { title: "AI YouTube Transcriber", desc: "Get transcripts for any YouTube video using AI.", link: "https://toolnovanext.github.io/AI-YouTube-Transcriber/" },
+      { title: "AI Text to Speech", desc: "Convert text to natural-sounding speech using advanced AI.", link: "https://toolnovanext.github.io/ARtexttospeech/" },
+      { title: "AI Summarizer", desc: "Summarize video, audio, image, or documents.", link: "https://toolnovanext.github.io/Ai-summarizer/" },
+      { title: "LinguaFlow Translate", desc: "Your premium AI-powered translation experience.", link: "https://toolnovanext.github.io/LinguaFlow-Translate/" },
+      { title: "Photo Analyser", desc: "Analyse your photo with AI.", link: "https://toolnovanext.github.io/photo-analyser.-/" },
+      { title: "Text to Image Generator", desc: "Generate images from text using AI.", link: "https://toolnovanext.github.io/Text-to-image-generator/" },
+      { title: "SMRipon YT Companion", desc: "Manage and analyze your YouTube channel effectively.", link: "https://toolnovanext.github.io/SMRipon-YT-Companion/" },
+      { title: "FB Companion", desc: "Powerful Facebook content assistant and companion tool.", link: "https://toolnovanext.github.io/Fb-companion/" },
+      { title: "SmartPDF Analyzer", desc: "Analyze PDF files intelligently.", link: "https://toolnovanext.github.io/Smart-PDF-Analyzer/" },
+      { title: "AI Chatbot", desc: "Talk with ToolNovaNext chatbot.", link: "https://toolnovanext.github.io/Accessible-resource-chat/" },
+      { title: "Smart Post Studio", desc: "Generate social posts and articles easily.", link: "https://toolnovanext.github.io/Smart-Post-Studio/" },
+      { title: "VocabHub", desc: "Multi-language dictionary app.", link: "https://toolnovanext.github.io/VocabHub/" },
+      { title: "AI Grammar Checker", desc: "Fix grammar issues with AI suggestions.", link: "https://toolnovanext.github.io/Grammar-checker/" },
+      { title: "Text Analyzer Pro", desc: "Analyze word, sentence, and punctuation stats.", link: "https://toolnovanext.github.io/Text-analyser-pro/" },
+      { title: "Text Encryptor", desc: "Encrypt or decrypt text using AI.", link: "https://toolnovanext.github.io/AI-Text-Encryption-Decryption-Tool/" },
+      { title: "AI Future Predictor", desc: "Predict your future with AI insights.", link: "https://toolnovanext.github.io/AI-future-predictor---/" },
+      { title: "Simple Calculator", desc: "Basic calculator tool.", link: "https://toolnovanext.github.io/Simple-calculator/" },
+      { title: "Age Calculator", desc: "Calculate your age instantly.", link: "https://toolnovanext.github.io/Age-Calculator-/" },
+      { title: "Currency Converter", desc: "Convert between currencies.", link: "https://toolnovanext.github.io/Currency-converter/" },
+      { title: "Global Time Converter", desc: "Check time in different time zones.", link: "https://toolnovanext.github.io/Time-converter/" },
+      { title: "Honey GPT", desc: "Speak and receive real-time answers in a natural female voice.", link: "https://toolnovanext.github.io/Application/" }
+    ];
 
-        { title: "AR DualVoice Generator", desc: "AR DualVoice Generator is a modern tool that can create realistic dialogues in two voices simultaneously, perfect for movies, dramas, or storytelling.", link: "https://accessibleresource.github.io/AR-DualVoice-Generator/" },
-        { title: "Slide show creator", desc: "Create videos of slide show. Best for presentations, social media posts and offices work.", link: "https://accessibleresource.github.io/slide-show/" },
-        { title: "AI YouTube Transcriber", desc: "Get transcripts for any YouTube video using AI.", link: "https://accessibleresource.github.io/AI-YouTube-Transcriber/" },
-        { title: "AI Text to Speech", desc: "Convert text to natural-sounding speech using advanced AI.", link: "https://accessibleresource.github.io/ARtexttospeech/" },
-        { title: "AI Summarizer", desc: "Summarize video, audio, image, or documents.", link: "https://accessibleresource.github.io/Ai-summarizer/" },
-        { title: "LinguaFlow Translate", desc: "Your premium AI-powered translation experience.", link: "https://accessibleresource.github.io/LinguaFlow-Translate/" },
-        { title: "Photo Analyser", desc: "Analyse your photo with AI.", link: "https://accessibleresource.github.io/photo-analyser.-/" },
-        { title: "Text to Image Generator", desc: "Generate images from text using AI.", link: "https://accessibleresource.github.io/Text-to-image-generator/" },
-        { title: "SMRipon YT Companion", desc: "Manage and analyze your YouTube channel effectively.", link: "https://accessibleresource.github.io/SMRipon-YT-Companion/" },
-        { title: "FB Companion", desc: "Powerful Facebook content assistant and companion tool.", link: "https://accessibleresource.github.io/Fb-companion/" },
-        { title: "SmartPDF Analyzer", desc: "Analyze PDF files intelligently.", link: "https://accessibleresource.github.io/Smart-PDF-Analyzer/" },
-        { title: "AI Chatbot", desc: "Talk with Accessible Resource chatbot.", link: "https://accessibleresource.github.io/Accessible-resource-chat/" },
-        { title: "Smart Post Studio", desc: "Generate social posts and articles easily.", link: "https://accessibleresource.github.io/Smart-Post-Studio/" },
-        { title: "VocabHub", desc: "Multi-language dictionary app.", link: "https://accessibleresource.github.io/VocabHub/" },
-        { title: "AI Grammar Checker", desc: "Fix grammar issues with AI suggestions.", link: "https://accessibleresource.github.io/Grammar-checker/" },
-        { title: "Text Analyzer Pro", desc: "Analyze word, sentence, and punctuation stats.", link: "https://accessibleresource.github.io/Text-analyser-pro/" },
-        { title: "Text Encryptor", desc: "Encrypt or decrypt text using AI.", link: "https://accessibleresource.github.io/AI-Text-Encryption-Decryption-Tool/" },
-        { title: "AI-future-predictor", desc: "Predict your future with AI insights.", link: "https://accessibleresource.github.io/AI-future-predictor---/" },
-        { title: "Simple Calculator", desc: "Basic calculator tool.", link: "https://accessibleresource.github.io/Simple-calculator/" },
-        { title: "Age Calculator", desc: "Calculate your age instantly.", link: "https://accessibleresource.github.io/Age-Calculator-/" },
-        { title: "Currency Converter", desc: "Convert between currencies.", link: "https://accessibleresource.github.io/Currency-converter/" },
-        { title: "Global Time Converter", desc: "Check time in different time zones.", link: "https://accessibleresource.github.io/Time-converter/" },
-        { title: "Honey GPT", desc: "Speak and receive real-time answers in a natural female voice.", link: "https://accessibleresource.github.io/Application/" }
-      ];
-
-      const welcome = document.getElementById("welcome");
-      const now = new Date();
-      const hour = now.getHours();
-      let message = "";
-      if (hour >= 5 && hour < 12) message = "Good morning! Welcome to the User Favourite Tools section. Accessible Resource wishes you a productive start to your day!";
-      else if (hour >= 12 && hour < 16) message = "Good afternoon! Hope your day is going great. You're now in the User Favourite Tools section, curated just for your daily needs by Accessible Resource.";
-      else if (hour >= 16 && hour < 20) message = "Good evening! Welcome back! This is the User Favourite Tools section, brought to you with care by Accessible Resource. Let’s make the most of your evening.";
-      else message = "Good night! You're visiting the User Favourite Tools section at the perfect time to wrap up your day smartly. With love from Accessible Resource.";
-      welcome.innerText = message;
-
-      const deviceInfo = document.getElementById("deviceInfo");
-      const updateDeviceInfo = () => {
-          const currentTime = new Date();
-          let infoText = `Date: ${currentTime.toLocaleDateString()} | Time: ${currentTime.toLocaleTimeString()}`;
-          if (navigator.getBattery) {
-              navigator.getBattery().then(battery => {
-                  deviceInfo.innerText = `Battery Level: ${Math.round(battery.level * 100)}% | ${infoText}`;
-              });
-          } else {
-              deviceInfo.innerText = infoText;
-          }
-      };
-      updateDeviceInfo();
-      setInterval(updateDeviceInfo, 1000);
-
-      const toolSection = document.getElementById("tools");
-      tools.forEach((tool, index) => {
-        const div = document.createElement("div");
-        div.className = `tool tool-${index + 1}`;
-        div.innerHTML = `<h3>${tool.title}</h3><p>${tool.desc}</p><button onclick="window.open('${tool.link}', '_blank')">Open</button>`;
-        toolSection.appendChild(div);
-      });
+    const toolSection = document.getElementById("tools");
+    tools.forEach((tool, index) => {
+      const div = document.createElement("div");
+      div.className = `tool tool-${index + 1}`;
+      div.innerHTML = `<h3>${tool.title}</h3><p>${tool.desc}</p><button onclick="window.open('${tool.link}', '_blank')">Open</button>`;
+      toolSection.appendChild(div);
     });
-
-    function toggleMode() {
-      document.body.classList.toggle("light-mode");
-    }
   </script>
-
 </body>
 </html>
